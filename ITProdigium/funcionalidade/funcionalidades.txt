@@ -1,5 +1,5 @@
 Cadastro de Avalia��es
-Cadastro de Objetivos
+
 Visualiza��o das Avalia��es
 Visualiza��o dos Objetivos
 Cadastro Funcionarios
