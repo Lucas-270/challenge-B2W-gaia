@@ -2,3 +2,4 @@ Cadastro de Avaliações
 Cadastro de Objetivos
 Visualização das Avaliações
 Visualização dos Objetivos
+Cadastro Funcionarios
