@@ -1,6 +1,4 @@
-Cadastro de Avalia��es
-
-Visualiza��o das Avalia��es
-Visualiza��o dos Objetivos
-Cadastro Funcionarios
-lala
+Cadastro de Avaliações
+Cadastro de Objetivos
+Visualização das Avaliações
+Visualização dos Objetivos
