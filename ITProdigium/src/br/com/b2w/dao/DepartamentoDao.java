@@ -6,6 +6,11 @@ import java.util.List;
 import br.com.b2w.bean.Departamento;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 
+/**
+ * Define os métodos que serão implementados para a classe Departamento
+ * @author jhona
+ *
+ */
 public interface DepartamentoDao {
 
 	void cadastrar(Departamento dep) throws SQLException;

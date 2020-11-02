@@ -18,23 +18,46 @@ import br.com.b2w.dao.PilarDao;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 import br.com.b2w.singleton.ConnectionManager;
 
+/**
+ * Classe que implementa os métodos existentes dentro da classe ObjetivoDao
+ * @author jhona
+ *
+ */
 public class ObjetivoOracleDao implements ObjetivoDao{
 
 	private Connection conn;
 	
-	//Construtor que obtem a conexao com o BD
+	/**
+	 * Construtor que faz a conexão com o banco de dados
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public ObjetivoOracleDao() throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		conn = ConnectionManager.getInstance().getConnection();
+	}
+	
+	/**
+	 * Construtor que recebe a conexão para o banco de dados
+	 * @param conn - Conexão com o BD
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
+	public ObjetivoOracleDao(Connection conn) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		this.conn = conn;
 	}
 	
 	
 	@Override
 	public void cadastrar(Objetivo objetivo) throws SQLException {
 		PreparedStatement stmt = conn.prepareStatement("INSERT INTO T_PDG_OBJS "
-				+ " (ID_OBJETIVOS, ID_ASSOCIADO, ID_AVALIACAO, ID_PILARES, ID_STATUS_OBJETIVOS, ID_STT_AVAL"
+				+ " (ID_OBJETIVOS, ID_ASSOCIADO, ID_AVALIACAO, ID_PILARES, ID_STt_OBJ, ID_STT_AVAL"
 				+ "	ID_GESTOR, NM_GESTOR, NM_OBJ, NM_PESSOA, DS_METODOS, DS_RESUL, DS_META, DT_PRAZO, DT_CRIACAO"
 				+ "	DT_APROVACAO, NT_AUTOAVAL, DT_AUTOAVAL, NT_AVAL, DT_AVAL, DT_CONFIRMACAO) VALUES "
-				+ " (SQ_PDG_OBJS.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				+ " (SQ_PDG_OBJS.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)");
 		
 		stmt.setInt(1, objetivo.getAval().getFunc().getCodigo());
 		stmt.setInt(2, objetivo.getAval().getCodigo());
@@ -49,13 +72,12 @@ public class ObjetivoOracleDao implements ObjetivoDao{
 		stmt.setString(11, objetivo.getResultado());
 		stmt.setString(12, objetivo.getMeta());
 		stmt.setString(13, objetivo.getDataPrazo());
-		stmt.setString(14, objetivo.getDataCriacao());
-		stmt.setString(15, objetivo.getDataAprovacao());
-		stmt.setDouble(16, objetivo.getAutoNota());
-		stmt.setString(17, objetivo.getDataAutoNota());
-		stmt.setDouble(18, objetivo.getNotaGestor());
-		stmt.setString(19, objetivo.getDataNotaGestor());
-		stmt.setString(20, objetivo.getDataConfirmacao());
+		stmt.setString(14, objetivo.getDataAprovacao());
+		stmt.setDouble(15, objetivo.getAutoNota());
+		stmt.setString(16, objetivo.getDataAutoNota());
+		stmt.setDouble(17, objetivo.getNotaGestor());
+		stmt.setString(18, objetivo.getDataNotaGestor());
+		stmt.setString(19, objetivo.getDataConfirmacao());
 		
 		stmt.executeUpdate();
 		
@@ -66,7 +88,7 @@ public class ObjetivoOracleDao implements ObjetivoDao{
 	public void atualizar(Objetivo objetivo) throws SQLException, EntidadeNaoEncontradaException {
 		PreparedStatement stmt = conn.prepareStatement("UPDATE T_PDG_OBJS SET "
 				+ " ID_ASSOCIADO = ?, ID_AVALIACAO = ?, ID_PILARES = ?, ID_STATUS_OBJETIVOS = ?, ID_STT_AVAL = ?"
-				+ "	ID_GESTOR = ?, NM_GESTOR = ?, NM_OBJ = ?, NM_PESSOA = ?, DS_METODOS = ?, DS_RESUL = ?, DS_META = ?, DT_PRAZO = ?, DT_CRIACAO = ?"
+				+ "	ID_GESTOR = ?, NM_GESTOR = ?, NM_OBJ = ?, NM_PESSOA = ?, DS_METODOS = ?, DS_RESUL = ?, DS_META = ?, DT_PRAZO = ?, "
 				+ "	DT_APROVACAO = ?, NT_AUTOAVAL = ?, DT_AUTOAVAL = ?, NT_AVAL = ?, DT_AVAL = ?, DT_CONFIRMACAO = ? "
 				+ " WHERE ID_OBJETIVOS = ?");
 		
@@ -83,14 +105,13 @@ public class ObjetivoOracleDao implements ObjetivoDao{
 		stmt.setString(11, objetivo.getResultado());
 		stmt.setString(12, objetivo.getMeta());
 		stmt.setString(13, objetivo.getDataPrazo());
-		stmt.setString(14, objetivo.getDataCriacao());
-		stmt.setString(15, objetivo.getDataAprovacao());
-		stmt.setDouble(16, objetivo.getAutoNota());
-		stmt.setString(17, objetivo.getDataAutoNota());
-		stmt.setDouble(18, objetivo.getNotaGestor());
-		stmt.setString(19, objetivo.getDataNotaGestor());
-		stmt.setString(20, objetivo.getDataConfirmacao());
-		stmt.setInt(21, objetivo.getCodigo());
+		stmt.setString(14, objetivo.getDataAprovacao());
+		stmt.setDouble(15, objetivo.getAutoNota());
+		stmt.setString(16, objetivo.getDataAutoNota());
+		stmt.setDouble(17, objetivo.getNotaGestor());
+		stmt.setString(18, objetivo.getDataNotaGestor());
+		stmt.setString(19, objetivo.getDataConfirmacao());
+		stmt.setInt(20, objetivo.getCodigo());
 		
 		int qtd = stmt.executeUpdate();
 		stmt.close();
@@ -190,7 +211,8 @@ public class ObjetivoOracleDao implements ObjetivoDao{
 		PilarDao pilDao = new PilarOracleDao();
 		Pilar pil = pilDao.pesquisar(codPil);
 		
-		Objetivo objetivo = new Objetivo(codigo, aval, codSttObj, nomeObj, resul, nomeMetodos, nomePessoa, pil, dataPrazo, dataCriacao, dataAprovacao, autoNota, dataAutoAval, notaGestor, dataNotaGestor, dataConfirmacao);
+		Objetivo objetivo = new Objetivo(codigo, aval, codSttObj, nomeObj, resul, nomeMetodos, nomePessoa, 
+						pil, dataPrazo, dataCriacao, dataAprovacao, autoNota, dataAutoAval, notaGestor, dataNotaGestor, dataConfirmacao);
 		
 		return objetivo;
 	}	

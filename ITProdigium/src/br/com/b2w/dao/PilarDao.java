@@ -6,6 +6,11 @@ import java.util.List;
 import br.com.b2w.bean.Pilar;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 
+/**
+ * Classe que define os métodos que serão implementados para a classe Pilar
+ * @author jhona
+ *
+ */
 public interface PilarDao {
 
 	void cadastrar(Pilar pilar) throws SQLException;

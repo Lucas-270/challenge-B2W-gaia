@@ -31,7 +31,7 @@ public class FuncionarioView {
 		String dataDesativacao = dtf.format(hoje);
 		
 		Funcionario func = new Funcionario(0, nome, cargo, gestor, null, null, email,  senha, null, null, ativo);
-		Funcionario func2 = new Funcionario(88, "Claisson", "Operário", "Irineu da Silva Pinto", null, null, "clai.sson@uol.com.br", "cl@l$$0N", dataDesativacao, 0);
+		Funcionario func2 = new Funcionario(114, "Claisson", "Operário", "Irineu da Silva Pinto", null, null, "clai.sson@uol.com.br", "cl@l$$0N", dataDesativacao, 0);
 		
 		try {
 			FuncionarioDao dao = new FuncionarioOracleDao();
@@ -49,11 +49,11 @@ public class FuncionarioView {
 			System.out.println("Cadastrado com sucesso");
 			
 			System.out.println("PESQUISAR");
-			//func = dao.pesquisar(88);
-			//System.out.println(func);
+			//func = dao.pesquisar(8);
+			System.out.println(func);
 			
 			System.out.println("ATUALIZAR");
-			dao.atualizar(func2);
+			//dao.atualizar(func2);
 			System.out.println("Atualizado com sucesso!");
 			
 			System.out.println("LISTAR");
@@ -63,7 +63,7 @@ public class FuncionarioView {
 			}
 			
 			System.out.println("REM0VER");
-			dao.remover(80);
+			//dao.remover(114);
 			System.out.println("Removido com sucesso!");
 		} catch (Exception e) {
 			e.printStackTrace();

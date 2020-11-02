@@ -30,17 +30,17 @@ public class AvaliacaoDesempenho {
 		super();
 	}
 
-	public AvaliacaoDesempenho(int codigo, Funcionario func, int status, double nota, String dataCriacao, String dataAvaliacao,
-			List<Objetivo> objetivos, String dataCadObjs, Funcionario criadorAval) {
+	public AvaliacaoDesempenho(int codigo, Funcionario func, int status, double nota, String dataAvaliacao,
+			List<Objetivo> objetivos, String dataCadObjs, String dataFecObjs, Funcionario criadorAval) {
 		super();
 		this.codigo = codigo;
 		this.func = func;
 		this.status = status;
 		this.nota = nota;
-		this.dataCriacao = dataCriacao;
 		this.dataAvaliacao = dataAvaliacao;
 		this.objetivos = objetivos;
 		this.dataCadObjs = dataCadObjs;
+		this.dataFecObjs = dataFecObjs;
 		this.criadorAval = criadorAval;
 	}
 

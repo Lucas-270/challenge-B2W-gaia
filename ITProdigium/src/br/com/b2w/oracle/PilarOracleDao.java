@@ -14,13 +14,36 @@ import br.com.b2w.dao.PilarDao;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 import br.com.b2w.singleton.ConnectionManager;
 
+/**
+ * Classe que implementa os métodos existentes da classe PilarDao
+ * @author jhona
+ *
+ */
 public class PilarOracleDao implements PilarDao{
 
 	private Connection conn;
 	
-	//Construtor que obtem a conexao com o BD
+	/**
+	 * Construtor que faz a conexão com o banco de dados
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public PilarOracleDao() throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		conn = ConnectionManager.getInstance().getConnection();
+	}
+	
+	/**
+	 * Construtor que recebe a conexão para o banco de dados
+	 * @param conn - Conexão com o BD
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
+	public PilarOracleDao(Connection conn) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		this.conn = conn;
 	}
 	
 	@Override

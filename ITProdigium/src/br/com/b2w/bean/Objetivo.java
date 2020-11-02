@@ -38,18 +38,16 @@ public class Objetivo {
 		super();
 	}
 
-	public Objetivo(int codigo, AvaliacaoDesempenho aval, int status, String nome, Pilar pilar, String pessoa, String metodos, String dataPrazo,
-			String dataCriacao) {
+	public Objetivo(int codigo, AvaliacaoDesempenho aval, int status, String nome, Pilar pilar, String pessoa, String metodos, String dataPrazo) {
 		super();
 		this.codigo = codigo;
 		this.aval = aval;
+		this.status = status;
 		this.pessoa = pessoa;
 		this.pilar = pilar;
-		this.status = status;
 		this.nome = nome;
 		this.metodos = metodos;
 		this.dataPrazo = dataPrazo;
-		this.dataCriacao = dataCriacao;
 	}
 
 	public Objetivo(int codigo, AvaliacaoDesempenho aval, int status, String nome, String resultado, String pessoa,

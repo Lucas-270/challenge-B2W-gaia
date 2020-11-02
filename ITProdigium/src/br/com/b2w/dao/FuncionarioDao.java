@@ -8,6 +8,11 @@ import java.util.List;
 import br.com.b2w.bean.Funcionario;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 
+/**
+ * Classe que define os métodos que serão implementados para a classe Funcionario
+ * @author jhona
+ *
+ */
 public interface FuncionarioDao {
 
 	void cadastrar(Funcionario func) throws SQLException;

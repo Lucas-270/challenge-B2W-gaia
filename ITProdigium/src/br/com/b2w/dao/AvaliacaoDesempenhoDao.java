@@ -8,6 +8,11 @@ import java.util.List;
 import br.com.b2w.bean.AvaliacaoDesempenho;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 
+/**
+ * Classe que define os métodos que serão implementados para a classe AvaliacaoDesempenho
+ * @author jhona
+ *
+ */
 public interface AvaliacaoDesempenhoDao {
 
 	void cadastrar(AvaliacaoDesempenho aval) throws SQLException;

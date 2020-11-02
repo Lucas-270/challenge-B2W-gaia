@@ -8,6 +8,11 @@ import java.util.List;
 import br.com.b2w.bean.Objetivo;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 
+/**
+ * Classe que define os métodos que serão implementados para a classe Objetivo
+ * @author jhona
+ *
+ */
 public interface ObjetivoDao {
 
 	void cadastrar(Objetivo objetivo) throws SQLException;

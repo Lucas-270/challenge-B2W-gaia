@@ -6,6 +6,11 @@ import java.util.List;
 import br.com.b2w.bean.TipoAssociado;
 import br.com.b2w.exception.EntidadeNaoEncontradaException;
 
+/**
+ * Classe que define os métodos que serão implementados para a classe TipoAssociado
+ * @author jhona
+ *
+ */
 public interface TipoAssociadoDao {
 
 	void cadastrar(TipoAssociado tipo) throws SQLException;
